@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="7" passed="7">
+  <reporter-output>
+  </reporter-output>
+  <suite name="HerokuExecution" duration-ms="4245" started-at="2021-07-25T22:08:27 CST" finished-at="2021-07-25T22:08:31 CST">
+    <groups>
+    </groups>
+    <test name="MiscTests" duration-ms="3367" started-at="2021-07-25T22:08:27 CST" finished-at="2021-07-25T22:08:30 CST">
+      <class name="MiscellaneousTests">
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:MiscellaneousTests@63e2203c]" name="setup" is-config="true" duration-ms="565" started-at="2021-07-25T22:08:27 CST" finished-at="2021-07-25T22:08:27 CST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://api-coffee-testing.herokuapp.com]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="HomeTest()[pri:0, instance:MiscellaneousTests@63e2203c]" name="HomeTest" duration-ms="1570" started-at="2021-07-25T22:08:27 CST" finished-at="2021-07-25T22:08:29 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- HomeTest -->
+        <test-method status="PASS" signature="PingTest()[pri:0, instance:MiscellaneousTests@63e2203c]" name="PingTest" duration-ms="981" started-at="2021-07-25T22:08:29 CST" finished-at="2021-07-25T22:08:30 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PingTest -->
+        <test-method status="PASS" signature="notFoundTest()[pri:0, instance:MiscellaneousTests@63e2203c]" name="notFoundTest" duration-ms="208" started-at="2021-07-25T22:08:30 CST" finished-at="2021-07-25T22:08:30 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- notFoundTest -->
+      </class> <!-- MiscellaneousTests -->
+    </test> <!-- MiscTests -->
+    <test name="AuthenticationTests" duration-ms="4245" started-at="2021-07-25T22:08:27 CST" finished-at="2021-07-25T22:08:31 CST">
+      <class name="AuthenticationTests">
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:AuthenticationTests@eec5a4a]" name="setup" is-config="true" duration-ms="565" started-at="2021-07-25T22:08:27 CST" finished-at="2021-07-25T22:08:27 CST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://api-coffee-testing.herokuapp.com]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="testDuplicateRegister()[pri:0, instance:AuthenticationTests@eec5a4a]" name="testDuplicateRegister" duration-ms="2554" started-at="2021-07-25T22:08:27 CST" description="Prueba para registrar de un usuario que ya existe." finished-at="2021-07-25T22:08:30 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDuplicateRegister -->
+        <test-method status="PASS" signature="testInvalidLogin()[pri:0, instance:AuthenticationTests@eec5a4a]" name="testInvalidLogin" duration-ms="299" started-at="2021-07-25T22:08:30 CST" description="Prueba para authenticar usuario invalido." finished-at="2021-07-25T22:08:30 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testInvalidLogin -->
+        <test-method status="PASS" signature="testLogin()[pri:0, instance:AuthenticationTests@eec5a4a]" name="testLogin" duration-ms="419" started-at="2021-07-25T22:08:30 CST" description="Prueba para login de un usuario." finished-at="2021-07-25T22:08:30 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLogin -->
+        <test-method status="PASS" signature="testRegister()[pri:0, instance:AuthenticationTests@eec5a4a]" name="testRegister" duration-ms="372" started-at="2021-07-25T22:08:30 CST" description="Prueba para registrar un usuario." finished-at="2021-07-25T22:08:31 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegister -->
+      </class> <!-- AuthenticationTests -->
+    </test> <!-- AuthenticationTests -->
+  </suite> <!-- HerokuExecution -->
+</testng-results>
