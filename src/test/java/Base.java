@@ -7,15 +7,15 @@ public class Base {
     protected int articleId;
 
     @Parameters("host")
+
     @BeforeSuite(alwaysRun = true)
     public void setup(String host){
         RestAssured.baseURI = host;
     }
 
-    //
     @BeforeMethod(groups = "useArticle")
     public void createArticle(){
-        int articleId = RequestHelper.createRandomArticleAndGetId();
+        articleId = RequestHelper.createRandomArticleAndGetId();
     }
 
     @AfterMethod(groups = "useArticle")
