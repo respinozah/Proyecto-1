@@ -3,6 +3,7 @@ package Helpers;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import model.Article;
+import model.Comment;
 import model.Post;
 import model.User;
 import specifications.RequestSpecifications;
@@ -63,6 +64,29 @@ public class RequestHelper {
         Response response =
             given()
                 .spec(RequestSpecifications.useJWTAuthentication())
-                .delete("/v1/post/" + id);
+            .delete("/v1/post/" + id);
+    }
+
+    public static int createRandomCommentAndGetId(int postId) {
+        Comment comment = new Comment("Comment author", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at sapien efficitur, pharetra orci et, volutpat lorem. Vestibulum aliquam, tortor sed efficitur volutpat, ipsum elit tempor massa, at feugiat mi mi sed nisi.");
+
+        Response response =
+            given()
+                .spec(RequestSpecifications.useBasicAuthentication())
+                .body(comment)
+            .when()
+                .post("/v1/comment/" + postId);
+
+        JsonPath jsonPath = response.jsonPath();
+
+        //System.out.println("    En el create random comment ya tengo comment y es el " + jsonPath.get("id") + " del post " + postId);
+        return jsonPath.get("id");
+    }
+
+    public static void cleanUpComment(int postId, int commentId) {
+        Response response =
+            given()
+                .spec(RequestSpecifications.useBasicAuthentication())
+            .delete("/v1/comment/" + postId + "/" + commentId);
     }
 }

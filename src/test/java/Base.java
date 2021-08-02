@@ -6,6 +6,7 @@ public class Base {
 
     protected int articleId;
     protected int postId;
+    protected int commentId;
 
     @Parameters("host")
 
@@ -14,21 +15,19 @@ public class Base {
         RestAssured.baseURI = host;
     }
 
+
+    //Articles
     @BeforeMethod(groups = "useArticle")
-    public void createArticle(){
-        articleId = RequestHelper.createRandomArticleAndGetId();
-    }
+    public void createArticle(){ articleId = RequestHelper.createRandomArticleAndGetId(); }
 
     @AfterMethod(groups = "useArticle")
-    public void deleteArticle(){
-        RequestHelper.cleanUpArticle(articleId);
-    }
+    public void deleteArticle(){ RequestHelper.cleanUpArticle(articleId); }
 
 //    @AfterMethod(groups = "createArticle")
-//    public void deleteCreatedArticle(){
-//        RequestHelper.cleanUpArticle(articleId);
-//    }
+//    public void deleteCreatedArticle(){ RequestHelper.cleanUpArticle(articleId); }
 
+
+    //Posts
     @BeforeMethod(groups = "usePost")
     public void createPost(){
         postId = RequestHelper.createRandomPostAndGetId();
@@ -40,7 +39,24 @@ public class Base {
     }
 
 //    @AfterMethod(groups = "createPost")
-//    public void deleteCreatedPost(){
-//        RequestHelper.cleanUpPost(postId);
-//    }
+//    public void deleteCreatedPost(){ RequestHelper.cleanUpPost(postId); }
+
+
+    //Comments
+    //@BeforeMethod(groups = "useComment")
+    public void createComment(){
+        createPost();
+        //System.out.println("En el before method create comment ya tengo post " + postId);
+        commentId = RequestHelper.createRandomCommentAndGetId(postId);
+    }
+
+    //@AfterMethod(groups = "useComment")
+    public void deleteComment(){
+        //System.out.println("En el after method delete tenemos el comment " + commentId + " del post " + postId + ".");
+        RequestHelper.cleanUpComment(postId, commentId);
+        deletePost();
+    }
+
+//    @AfterMethod(groups = "createComment")
+//    public void deleteCreatedComment(){ RequestHelper.cleanUpComment(postId, commentId); }
 }

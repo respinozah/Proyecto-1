@@ -6,7 +6,7 @@ import specifications.ResponseSpecifications;
 public class MiscellaneousTests extends Base{
 
     @Test (description = "Test that validates api availability.")
-    public void HomeTest(){
+    public void testHome(){
         given()
         .when()
             .get("/")
@@ -16,7 +16,7 @@ public class MiscellaneousTests extends Base{
     }
 
     @Test (description = "Test that pings the api.")
-    public void PingTest(){
+    public void testPing(){
         given()
         .when()
             .get("/ping")
@@ -26,7 +26,7 @@ public class MiscellaneousTests extends Base{
     }
 
     @Test (description = "Test that validates api behavior for an invalid page or endpoint.")
-    public void notFoundTest(){
+    public void testNotFound(){
         given()
         .when()
             .get("/paginaNoExiste")

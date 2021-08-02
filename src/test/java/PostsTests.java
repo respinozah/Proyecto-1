@@ -1,5 +1,3 @@
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import model.Post;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
@@ -76,7 +74,7 @@ public class PostsTests extends Base{
         given()
             .spec(RequestSpecifications.useJWTAuthentication())
         .when()
-            .get("/v1/post/000")
+            .get("/v1/post/invalidPost")
         .then()
             .statusCode(404)
             .body("Message", Matchers.equalTo("Post not found"));
@@ -124,7 +122,7 @@ public class PostsTests extends Base{
         given()
             .spec(RequestSpecifications.useJWTAuthentication())
         .when()
-            .delete("/v1/post/000")
+            .delete("/v1/post/invalidPost")
         .then()
             .statusCode(406)
             .body("message", Matchers.equalTo("Post could not be deleted"));

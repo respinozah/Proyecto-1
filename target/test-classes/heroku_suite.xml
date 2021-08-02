@@ -16,9 +16,15 @@
 <!--        </classes>-->
 <!--    </test>-->
 
-    <test name="PostsTests">
+<!--    <test name="PostsTests">-->
+<!--        <classes>-->
+<!--            <class  name="PostsTests"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="CommentsTests">
         <classes>
-            <class  name="PostsTests"></class>
+            <class  name="CommentsTests"></class>
         </classes>
     </test>
 

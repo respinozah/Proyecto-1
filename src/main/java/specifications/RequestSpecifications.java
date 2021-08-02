@@ -21,9 +21,8 @@ public class RequestSpecifications{
 
     public static RequestSpecification useBasicAuthentication(){
         RequestSpecBuilder builder = new RequestSpecBuilder();
-        User testUser = new User("osyseby@testemail.com", "Test User","password");
-        builder.addHeader("Authorization", "Basic VGVzdCBVc2VyOnBhc3N3b3Jk");
-
+        builder.addHeader("Authorization", "Basic dGVzdHVzZXI6dGVzdHBhc3M=");
+        //builder.addHeader("Authorization", "Basic b3N5c2VieUB0ZXN0ZW1haWwuY29tOnBhc3N3b3Jk");
         return builder.build();
     }
 }
