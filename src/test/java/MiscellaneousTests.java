@@ -5,7 +5,7 @@ import specifications.ResponseSpecifications;
 
 public class MiscellaneousTests extends Base{
 
-    @Test
+    @Test (description = "Test that validates api availability.")
     public void HomeTest(){
         given()
         .when()
@@ -15,7 +15,7 @@ public class MiscellaneousTests extends Base{
             .body(Matchers.containsString("Welcome to Golang"));
     }
 
-    @Test
+    @Test (description = "Test that pings the api.")
     public void PingTest(){
         given()
         .when()
@@ -25,7 +25,7 @@ public class MiscellaneousTests extends Base{
             .body("response", Matchers.equalTo("pong"));
     }
 
-    @Test
+    @Test (description = "Test that validates api behavior for an invalid page or endpoint.")
     public void notFoundTest(){
         given()
         .when()

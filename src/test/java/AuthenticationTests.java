@@ -8,7 +8,7 @@ import static io.restassured.RestAssured.given;
 
 public class AuthenticationTests extends Base{
 
-    @Test(description = "Prueba para registrar un usuario.")
+    @Test(description = "Test that registers a new user.")
     public void testRegister(){
         User testUser = new User(DataHelper.generateRandomEmail(), "Test User","password");
 
@@ -24,7 +24,7 @@ public class AuthenticationTests extends Base{
         //System.out.println("Usuario registrado: " + testUser.getEmail());
     }
 
-    @Test(description = "Prueba para login de un usuario.")
+    @Test(description = "Test to login an existing user.")
     public void testLogin(){
         User testUser = new User("osyseby@testemail.com", "Test User","password");
 
@@ -38,7 +38,7 @@ public class AuthenticationTests extends Base{
             .body("user.email", Matchers.equalTo(testUser.getEmail()));
     }
 
-    @Test(description = "Prueba para authenticar usuario invalido.")
+    @Test(description = "Test to validate invalid user authentication.")
     public void testInvalidLogin(){
         User testUser = new User("nonExistingUser@testemail.com", "Test User","password");
 
@@ -51,7 +51,7 @@ public class AuthenticationTests extends Base{
             .body("message", Matchers.equalTo("Invalid login details"));
     }
 
-    @Test(description = "Prueba para registrar de un usuario que ya existe.")
+    @Test(description = "Test that validates duplicate user registration.")
     public void testDuplicateRegister(){
         User testUser = new User("osyseby@testemail.com", "Test User","password");
 
@@ -64,7 +64,7 @@ public class AuthenticationTests extends Base{
             .body("message", Matchers.equalTo("User already exists"));
     }
 
-    @Test(description= "Prueba para hacer logout.")
+    @Test(description= "Test to logout.")
     public void testLogOut(){
         given()
             .spec(RequestSpecifications.useJWTAuthentication())
@@ -76,7 +76,7 @@ public class AuthenticationTests extends Base{
             .body("message", Matchers.equalTo("Successfully logged out"));
     }
 
-    @Test(description= "Prueba para hacer logout de un usuario invalido.")
+    @Test(description= "Test to logout invalid user.")
     public void testLogOutInvalidUser(){
         given()
                 .spec(RequestSpecifications.useInvalidJWTAuthentication())
