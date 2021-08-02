@@ -3,6 +3,7 @@ package Helpers;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import model.Article;
+import model.Post;
 import model.User;
 import specifications.RequestSpecifications;
 import static io.restassured.RestAssured.given;
@@ -31,7 +32,7 @@ public class RequestHelper {
                 .spec(RequestSpecifications.useJWTAuthentication())
                 .body(randomArticle)
             .when()
-            .post("/v1/article");
+                .post("/v1/article");
 
         JsonPath jsonPath = response.jsonPath();
         return jsonPath.get("id");
@@ -40,7 +41,28 @@ public class RequestHelper {
     public static void cleanUpArticle(int id){
         Response response =
             given()
-                .spec(RequestSpecifications.useInvalidJWTAuthentication())
+                .spec(RequestSpecifications.useJWTAuthentication())
             .delete("/v1/article/" + id);
+    }
+
+    public static int createRandomPostAndGetId(){
+        Post randomPost = new Post("Post title", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc felis quam, volutpat a pharetra luctus, facilisis sit amet ipsum. Aliquam porttitor iaculis urna et ultrices. Mauris aliquam augue velit, id condimentum quam varius blandit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam et tellus nisi. Donec aliquet odio sit amet nisl accumsan, in laoreet ligula euismod. Morbi tincidunt mauris ac turpis semper sagittis. Sed nec quam elit. Suspendisse finibus auctor neque facilisis feugiat.");
+
+        Response response =
+            given()
+                .spec(RequestSpecifications.useJWTAuthentication())
+                .body(randomPost)
+            .when()
+                .post("/v1/post");
+
+        JsonPath jsonPath = response.jsonPath();
+        return jsonPath.get("id");
+    }
+
+    public static void cleanUpPost(int id){
+        Response response =
+            given()
+                .spec(RequestSpecifications.useJWTAuthentication())
+                .delete("/v1/post/" + id);
     }
 }

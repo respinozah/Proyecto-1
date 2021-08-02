@@ -1,12 +1,9 @@
 import Helpers.DataHelper;
-import Helpers.RequestHelper;
-import io.restassured.specification.RequestSpecification;
 import model.User;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 import specifications.RequestSpecifications;
 import specifications.ResponseSpecifications;
-
 import static io.restassured.RestAssured.given;
 
 public class AuthenticationTests extends Base{
@@ -72,11 +69,11 @@ public class AuthenticationTests extends Base{
         given()
             .spec(RequestSpecifications.useJWTAuthentication())
             //.spec(RequestSpecifications.useBasicAuthentication())
-            .when()
-                .get("/v1/user/logout")
-            .then()
-                .spec(ResponseSpecifications.validatePositiveResponse())
-                .body("message", Matchers.equalTo("Successfully logged out"));
+        .when()
+            .get("/v1/user/logout")
+        .then()
+            .spec(ResponseSpecifications.validatePositiveResponse())
+            .body("message", Matchers.equalTo("Successfully logged out"));
     }
 
     @Test(description= "Prueba para hacer logout de un usuario invalido.")

@@ -10,9 +10,15 @@
 <!--        </classes>-->
 <!--    </test>-->
 
-    <test name="ArticlesTests">
+<!--    <test name="ArticlesTests">-->
+<!--        <classes>-->
+<!--            <class  name="ArticlesTests"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="PostsTests">
         <classes>
-            <class  name="ArticlesTests"></class>
+            <class  name="PostsTests"></class>
         </classes>
     </test>
 

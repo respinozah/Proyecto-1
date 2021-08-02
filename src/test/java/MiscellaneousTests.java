@@ -1,6 +1,7 @@
 import static io.restassured.RestAssured.given;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
+import specifications.ResponseSpecifications;
 
 public class MiscellaneousTests extends Base{
 

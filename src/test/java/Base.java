@@ -5,6 +5,7 @@ import org.testng.annotations.*;
 public class Base {
 
     protected int articleId;
+    protected int postId;
 
     @Parameters("host")
 
@@ -22,4 +23,24 @@ public class Base {
     public void deleteArticle(){
         RequestHelper.cleanUpArticle(articleId);
     }
+
+//    @AfterMethod(groups = "createArticle")
+//    public void deleteCreatedArticle(){
+//        RequestHelper.cleanUpArticle(articleId);
+//    }
+
+    @BeforeMethod(groups = "usePost")
+    public void createPost(){
+        postId = RequestHelper.createRandomPostAndGetId();
+    }
+
+    @AfterMethod(groups = "usePost")
+    public void deletePost(){
+        RequestHelper.cleanUpPost(postId);
+    }
+
+//    @AfterMethod(groups = "createPost")
+//    public void deleteCreatedPost(){
+//        RequestHelper.cleanUpPost(postId);
+//    }
 }
