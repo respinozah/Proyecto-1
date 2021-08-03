@@ -46,13 +46,11 @@ public class Base {
     //@BeforeMethod(groups = "useComment")
     public void createComment(){
         createPost();
-        //System.out.println("En el before method create comment ya tengo post " + postId);
         commentId = RequestHelper.createRandomCommentAndGetId(postId);
     }
 
     //@AfterMethod(groups = "useComment")
     public void deleteComment(){
-        //System.out.println("En el after method delete tenemos el comment " + commentId + " del post " + postId + ".");
         RequestHelper.cleanUpComment(postId, commentId);
         deletePost();
     }

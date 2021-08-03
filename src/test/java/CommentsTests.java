@@ -60,13 +60,95 @@ public class CommentsTests extends Base{
         given()
             .spec(RequestSpecifications.useBasicAuthentication())
         .when()
-            .get("/v1/comments/0")
+            .get("/v1/comments/invaliEndPoint")
         .then()
             .statusCode(200)
-            .body("results[0].meta[0].total", Matchers.equalTo("0"));
+            .body(Matchers.blankOrNullString());
     }
 
     //v1.GET("/comment/:postid/:id"
+    @Test(description = "Test to retrieve a comment by Id")
+    public void testGetACommentbyId(){
+        createComment();
+
+        given()
+            .spec(RequestSpecifications.useBasicAuthentication())
+        .when()
+            .get("/v1/comment/" + postId + "/" + commentId)
+        .then()
+            .statusCode(200)
+            .body("data.id", Matchers.equalTo(commentId))
+            .body("data.post_id", Matchers.equalTo(String.valueOf(postId)));
+
+        deleteComment();
+    }
+
+    @Test(description = "Test to retrieve a comment using an invalid id", groups = "usePost")
+    public void testGetACommentUsingInvalidId(){
+        given()
+            .spec(RequestSpecifications.useBasicAuthentication())
+        .when()
+            .get("/v1/comment/" + postId + "/0")
+        .then()
+            .statusCode(404)
+            .body("Message", Matchers.equalTo("Comment not found"));
+    }
+
     //v1.PUT("/comment/:postid/:id"
+    @Test(description = "Test that updates a comment by Id")
+    public void testUpdateCommentById(){
+        createComment();
+
+        given()
+            .spec(RequestSpecifications.useBasicAuthentication())
+            .body(new Comment("Updated name", "updated comment"))
+        .when()
+            .put("/v1/comment/" + postId + "/" + commentId)
+        .then()
+            .spec(ResponseSpecifications.validatePositiveResponse())
+            .body("message", Matchers.equalTo("Comment updated"));
+
+        deleteComment();
+    }
+
+    @Test(description = "Test that udpates an invalid comment")
+    public void testUpdateInvalidComment(){
+        createComment();
+
+        given()
+            .spec(RequestSpecifications.useBasicAuthentication())
+            .body(new Comment("Updated name", "updated comment"))
+        .when()
+            .put("/v1/comment/" + postId + "/000")
+        .then()
+            .statusCode(406)
+            .body("message", Matchers.equalTo("Comment could not be updated"));
+
+        deleteComment();
+    }
+
     //v1.DELETE("/comment/:postid/:id"
+    @Test(description = "Test that deletes a comment")
+    public void testDeleteComment(){
+        createComment();
+
+        given()
+            .spec(RequestSpecifications.useBasicAuthentication())
+        .when()
+            .delete("/v1/comment/" + postId + "/" + commentId)
+        .then()
+            .spec(ResponseSpecifications.validatePositiveResponse());
+    }
+
+    @Test(description = "Test that deletes an invalid comment", groups = "usePost")
+    public void testDeleteInvalidComment(){
+        given()
+            .spec(RequestSpecifications.useBasicAuthentication())
+        .when()
+            .delete("/v1/comment/" + postId + "/000")
+        .then()
+            .statusCode(406)
+            .body("message", Matchers.equalTo("Comment could not be deleted"))
+            .body("error", Matchers.equalTo("Comment not found"));
+    }
 }
