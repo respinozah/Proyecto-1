@@ -77,7 +77,7 @@ public class PostsTests extends Base{
             .get("/v1/post/invalidPost")
         .then()
             .statusCode(404)
-            .body("Message", Matchers.equalTo("Post not found"));
+            .body("Message", Matchers.equalTo("Invalid parameter"));
     }
 
     //v1.PUT("/post/:id"
@@ -124,7 +124,7 @@ public class PostsTests extends Base{
         .when()
             .delete("/v1/post/invalidPost")
         .then()
-            .statusCode(406)
-            .body("message", Matchers.equalTo("Post could not be deleted"));
+            .statusCode(404)
+            .body("message", Matchers.equalTo("Invalid parameter"));
     }
 }
