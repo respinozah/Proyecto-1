@@ -23,10 +23,6 @@ public class Base {
     @AfterMethod(groups = "useArticle")
     public void deleteArticle(){ RequestHelper.cleanUpArticle(articleId); }
 
-//    @AfterMethod(groups = "createArticle")
-//    public void deleteCreatedArticle(){ RequestHelper.cleanUpArticle(articleId); }
-
-
     //Posts
     @BeforeMethod(groups = "usePost")
     public void createPost(){
@@ -38,23 +34,16 @@ public class Base {
         RequestHelper.cleanUpPost(postId);
     }
 
-//    @AfterMethod(groups = "createPost")
-//    public void deleteCreatedPost(){ RequestHelper.cleanUpPost(postId); }
-
-
     //Comments
-    //@BeforeMethod(groups = "useComment")
+    @BeforeMethod(groups = "useComment")
     public void createComment(){
-        createPost();
+        postId = RequestHelper.createRandomPostAndGetId();
         commentId = RequestHelper.createRandomCommentAndGetId(postId);
     }
 
-    //@AfterMethod(groups = "useComment")
+    @AfterMethod(groups = "useComment")
     public void deleteComment(){
         RequestHelper.cleanUpComment(postId, commentId);
-        deletePost();
+        RequestHelper.cleanUpPost(postId);
     }
-
-//    @AfterMethod(groups = "createComment")
-//    public void deleteCreatedComment(){ RequestHelper.cleanUpComment(postId, commentId); }
 }
